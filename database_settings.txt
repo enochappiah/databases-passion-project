@@ -1,0 +1,6 @@
+connection_name: "databases_final_project"
+server_address: "localhost"
+port: 3306
+database: "soccer_db"
+username: "root"
+database_data_source_url: "https://www.kaggle.com/datasets/technika148/football-database"
