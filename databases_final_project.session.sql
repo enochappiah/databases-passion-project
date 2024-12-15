@@ -1,23 +1,24 @@
 use soccer_db;
 
+CREATE TABLE IF NOT EXISTS LEAGUE (
+    league_id INT PRIMARY KEY,
+    league_name VARCHAR(40) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS TEAM (
     team_id INT PRIMARY KEY,
     team_name VARCHAR(40) NOT NULL,
-    league_Id INT NOT NULL REFERENCES LEAGUE(league_id)
-)
+    league_id INT NOT NULL REFERENCES LEAGUE(league_id)
+);
 
-CREATE TABLE IF NOT EXISTS LEAGUE (
-    league_id INT PRIMARY KEY,
-    league_name VARCHAR(40) NOT NULL,
-)
 
 CREATE TABLE IF NOT EXISTS PLAYER (
     player_id INT PRIMARY KEY,
     player_name VARCHAR(40) NOT NULL,
     birthdate VARCHAR(40),
     height INT,
-    player_weight INT,
-)
+    player_weight INT
+);
 
 CREATE TABLE IF NOT EXISTS PLAYER_ATTRIBUTES (
     attribute_id INT PRIMARY KEY,
@@ -60,24 +61,7 @@ CREATE TABLE IF NOT EXISTS PLAYER_ATTRIBUTES (
     gk_kicking INT,
     gk_positioning INT,
     gk_reflexes INT
-)
-
-CREATE TABLE IF NOT EXISTS TEAM_STATS (
-    stat_id INT PRIMARY KEY,
-    team_id INT NOT NULL REFERENCES TEAM(team_id),
-    game_id INT NOT NULL REFERENCES GAME(game_id),
-    stat_date VARCHAR(40),
-    game_location VARCHAR(1),
-    goals INT,
-    xG FLOAT,
-    shots INT,
-    shots_on_target INT,
-    fouls INT,
-    corners INT,
-    yellow_cards INT,
-    red_cards INT,
-    result VARCHAR(1)
-)
+);
 
 CREATE TABLE IF NOT EXISTS GAME (
     game_id INT PRIMARY KEY,
@@ -96,7 +80,26 @@ CREATE TABLE IF NOT EXISTS GAME (
     betting_odds_draw FLOAT,
     betting_odds_away FLOAT
 
-)
+);
+
+CREATE TABLE IF NOT EXISTS TEAM_STATS (
+    stat_id INT PRIMARY KEY,
+    team_id INT NOT NULL REFERENCES TEAM(team_id),
+    game_id INT NOT NULL REFERENCES GAME(game_id),
+    stat_date VARCHAR(40),
+    game_location VARCHAR(1),
+    goals INT,
+    xG FLOAT,
+    shots INT,
+    shots_on_target INT,
+    fouls INT,
+    corners INT,
+    yellow_cards INT,
+    red_cards INT,
+    result VARCHAR(1)
+);
+
+
 
 CREATE TABLE IF NOT EXISTS SHOTS (
     shot_id INT PRIMARY KEY,
@@ -111,7 +114,7 @@ CREATE TABLE IF NOT EXISTS SHOTS (
     xG FLOAT,
     positionX VARCHAR(30),
     positionY VARCHAR(30)
-)
+);
 
 
 
