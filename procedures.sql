@@ -125,34 +125,6 @@ BEGIN
     SELECT P.player_name FROM PLAYER P, PLAYER_ATTRIBUTES PA WHERE P.player_id = PA.player_id AND PA.Attribute_Name > Threshold;
 END
 
-CREATE PROCEDURE HighestAvgBettingOdds()
-BEGIN
-    -- Find the team with the highest average betting odds
-    SELECT 
-        t.team_name AS TeamName,
-        AVG(odds.AvgOdds) AS HighestAvgBettingOdds
-    FROM 
-        TEAM t
-    JOIN (
-        -- Subquery to calculate average betting odds for each team
-        SELECT 
-            home_team_id AS team_id,
-            (betting_odds_home + betting_odds_draw + betting_odds_away) / 3 AS AvgOdds
-        FROM 
-            GAME
-        UNION ALL
-        SELECT 
-            away_team_id AS team_id,
-            (betting_odds_home + betting_odds_draw + betting_odds_away) / 3 AS AvgOdds
-        FROM 
-            GAME
-    ) odds ON t.team_id = odds.team_id
-    GROUP BY 
-        t.team_id, t.team_name
-    ORDER BY 
-        HighestAvgBettingOdds DESC
-    LIMIT 5;
-END
 
 CREATE PROCEDURE HighestWinRatio()
 BEGIN

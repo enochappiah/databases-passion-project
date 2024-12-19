@@ -115,16 +115,3 @@ CREATE TABLE IF NOT EXISTS SHOTS (
     positionX VARCHAR(30),
     positionY VARCHAR(30)
 );
-
-
-
--- CREATE TABLE IF NOT EXISTS WINS (
---     team_id INT,
---     league_id INT,
---     wins INT,
---     PRIMARY KEY (team_id, league_id),
---     FOREIGN KEY (team_id) REFERENCES TEAM(team_id),
---     FOREIGN KEY (league_id) REFERENCES LEAGUE(league_id)
--- )
-
-
