@@ -21,13 +21,13 @@ CREATE TABLE IF NOT EXISTS PLAYER (
 );
 
 CREATE TABLE IF NOT EXISTS PLAYER_ATTRIBUTES (
-    attribute_id INT PRIMARY KEY,
+    attribute_id INT PRIMARY KEY AUTO_INCREMENT,
     player_id INT NOT NULL REFERENCES PLAYER(player_id),
     overall_rating INT,
     potential INT,
-    preferred_foot VARCHAR(6),
-    attacking_work_rate VARCHAR(5),
-    defensive_work_rate VARCHAR(5),
+    preferred_foot VARCHAR(10),
+    attacking_work_rate VARCHAR(10),
+    defensive_work_rate VARCHAR(10),
     crossing INT,
     finishing INT,
     heading_accuracy INT,
@@ -62,8 +62,6 @@ CREATE TABLE IF NOT EXISTS PLAYER_ATTRIBUTES (
     gk_positioning INT,
     gk_reflexes INT
 );
-gameID,leagueID,season,date,homeTeamID,awayTeamID,homeGoals,awayGoals,homeProbability,drawProbability,awayProbability,homeGoalsHalfTime,awayGoalsHalfTime,B365H,B365D,B365A
-
 
 CREATE TABLE IF NOT EXISTS GAME (
     game_id INT PRIMARY KEY,
@@ -117,9 +115,6 @@ CREATE TABLE IF NOT EXISTS SHOTS (
     positionX VARCHAR(30),
     positionY VARCHAR(30)
 );
-
-
-Error Code: 1828. Cannot drop column 'assister_id': needed in a foreign key constraint 'shots_ibfk_3'
 
 
 
